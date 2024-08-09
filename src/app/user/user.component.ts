@@ -23,8 +23,11 @@ export class UserComponent {
   // @Input({ 'required': true }) avatar!: string;
   // @Input({ 'required': true }) name!: string;
 
+  // INPUT SIGNAL
   avatar = input.required<string>();
   name = input.required<string>();
+
+  // COMPUTED SIGNAL
   imagePath = computed(() => "../assets/users/" + this.avatar());
 
   // get imagePath() {
