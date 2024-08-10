@@ -1,10 +1,14 @@
 // Notes:
 // `Input` with an uppercase is decorator
 // `Input` with a lowercase is a type of function
-import { Component, computed, Input, input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
 
-const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
+type User = {
+  id: string;
+  avatar: string;
+  name: string;
+};
 
 @Component({
   selector: 'app-user',
@@ -20,23 +24,28 @@ export class UserComponent {
   //   return "../assets/users/" + this.selectedUser.avatar;
   // }
 
+  // @Input({ 'required': true }) id!: string;
   // @Input({ 'required': true }) avatar!: string;
   // @Input({ 'required': true }) name!: string;
+  @Input({ 'required': true }) user!: User;
+
+  @Output() select = new EventEmitter();
 
   // INPUT SIGNAL
-  avatar = input.required<string>();
-  name = input.required<string>();
+  // avatar = input.required<string>();
+  // name = input.required<string>();
 
   // COMPUTED SIGNAL
-  imagePath = computed(() => "../assets/users/" + this.avatar());
+  // imagePath = computed(() => "../assets/users/" + this.avatar());
 
-  // get imagePath() {
-  //   return "../assets/users/" + this.avatar;
-  // }
+  get imagePath() {
+    return "../assets/users/" + this.user.avatar;
+  }
 
   onSelectUser() {
     // const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
     // this.selectedUser.set(DUMMY_USERS[randomIndex]);
     // console.log('Clicked on user', this.selectedUser);
+    this.select.emit(this.user.id);
   }
 }
