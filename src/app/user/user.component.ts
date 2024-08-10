@@ -2,13 +2,7 @@
 // `Input` with an uppercase is decorator
 // `Input` with a lowercase is a type of function
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { DUMMY_USERS } from '../dummy-users';
-
-type User = {
-  id: string;
-  avatar: string;
-  name: string;
-};
+import { type User } from './user.model';
 
 @Component({
   selector: 'app-user',
@@ -28,7 +22,7 @@ export class UserComponent {
   // @Input({ 'required': true }) avatar!: string;
   // @Input({ 'required': true }) name!: string;
   @Input({ 'required': true }) user!: User;
-
+  @Input({ 'required': true }) selected!: boolean;
   @Output() select = new EventEmitter();
 
   // INPUT SIGNAL
