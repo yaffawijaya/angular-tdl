@@ -1,4 +1,4 @@
-const dummyTasks = [
+const DUMMY_TASKS = [
   {
     id: 't1',
     userId: 'u1',
