@@ -36,12 +36,24 @@ export class TasksComponent {
       userId: 'u3',
       title: 'Prepare issue template',
       summary:
-        'Prepare and describe an issue template which will help with project management',
+      'Prepare and describe an issue template which will help with project management',
       dueDate: '2024-06-15',
+    },
+    {
+      id: 't4',
+      userId: 'u7',
+      title: 'Master Angular',
+      summary:
+        'Jadi nomor satu di kelas!',
+      dueDate: '2025-12-31',
     },
   ];
 
   get selectedUserTasks() {
     return this.tasks.filter((task) => task.userId === this.userId);
+  }
+
+  onCompleteTask(id: string) {
+    this.tasks = this.tasks.filter((task) => task.id !== id);
   }
 }
